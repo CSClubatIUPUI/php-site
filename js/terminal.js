@@ -102,7 +102,13 @@ handlers = {
 			}
 		});
 	}, "go-chat": function(term, args) {
-		window.open("chat");
+		var url = window.location.href.split("://");
+		url.splice(0, 1);
+		url = url.join("://");
+		if (!url.endsWith("/")) {
+			url += "/";
+		}
+		window.open("https://" + url + "chat/");
 	}
 };
 

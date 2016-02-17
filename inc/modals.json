@@ -1,0 +1,16 @@
+[{
+    "id": "meetings",
+    "title": "Meetings",
+    "body": "file://meetings.html",
+    "footer": "<button class=\"btn btn-info\" id=\"btn-meetings-load\">Reload</button>"
+}, {
+    "id": "notifications",
+    "title": "Notifications",
+    "body": "file://notifications.html",
+    "footer": ""
+}, {
+    "id": "officers",
+    "title": "Officers",
+    "body": "file://officers.html",
+    "footer": "<button class=\"btn btn-info\" id=\"btn-officers-load\">Reload</button>"
+}]

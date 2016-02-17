@@ -1,0 +1,24 @@
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="table-officers"></tbody>
+    </table>
+</div>
+<script>
+function loadOfficers() {
+    loadTable({
+        "action": "get-officers"
+    }, $("#table-officers"));
+}
+
+$(function() {
+    loadOfficers();
+    $("#btn-officers-load").click(loadOfficers);
+});
+</script>

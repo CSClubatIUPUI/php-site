@@ -1,0 +1,17 @@
+body {
+    padding-top: 70px;
+}
+
+.content-section {
+    padding-bottom: 8.5px;
+    margin: 38px 0 19px;
+    border-bottom: 2px solid #bbbbbb;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+hr {
+    border-top: 2px solid #bbbbbb;
+}

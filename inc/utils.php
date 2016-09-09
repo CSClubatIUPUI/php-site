@@ -1,5 +1,9 @@
 <?php
-function startsWith($haystack, $needle) {
-    return substr($haystack, 0, strlen($needle)) === $needle;
+function get_local_datetime($seconds, $omitDate) {
+    $format = "g:ia";
+    if (!$omitDate) {
+        $format = "D, M jS Y " . $format;
+    }
+    return date($format, $seconds);
 }
 ?>

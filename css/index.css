@@ -1,17 +1,7 @@
-body {
-    padding-top: 70px;
+.btn-index-link {
+    font-size: 2em !important;
 }
 
-.content-section {
-    padding-bottom: 8.5px;
-    margin: 38px 0 19px;
-    border-bottom: 2px solid #bbbbbb;
-}
-
-.strike {
-    text-decoration: line-through;
-}
-
-hr {
-    border-top: 2px solid #bbbbbb;
+#desc-index {
+    font-size: 1.25em;
 }

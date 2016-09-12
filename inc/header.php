@@ -38,24 +38,22 @@ $original_page_name = explode(".", $script_name)[0];
         <link href="favicon.ico" rel="icon" />
     </head>
     <body>
-        <?php if ($script_name != "index.php"): ?>
-            <nav id="navbar" class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">CS Club @ IUPUI</a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <?php
-                            foreach ($page_names as $page => $name):
-                            ?>
-                                <li <?=$page == $script_name ? 'class="active"' : "" ?>>
-                                    <a href="<?=$page?>"><?=$name?></a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
+        <nav id="navbar" class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">CS Club @ IUPUI</a>
                 </div>
-            </nav>
-        <?php endif; ?>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <?php
+                        foreach ($page_names as $page => $name):
+                        ?>
+                            <li <?=$page == $script_name ? 'class="active"' : "" ?>>
+                                <a href="<?=$page?>"><?=$name?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div id="container" class="container">

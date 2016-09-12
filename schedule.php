@@ -13,7 +13,7 @@ $sql = "SELECT
             MONTH(`start`) = MONTH(CURDATE()) OR
             MONTH(`start`) = MONTH(CURDATE() + INTERVAL 1 MONTH)
         ORDER BY `start`";
-$scheduleResult = $db->query($sql);
+$schedule_result = $db->query($sql);
 ?>
 <table class="table table-striped table-hover">
     <thead>
@@ -25,12 +25,12 @@ $scheduleResult = $db->query($sql);
         </tr>
     </thead>
     <tbody>
-        <?php while ($scheduleRow = $scheduleResult->fetch_assoc()): ?>
+        <?php while ($schedule_row = $schedule_result->fetch_assoc()): ?>
             <tr>
-                <td><?=get_local_datetime($scheduleRow["start"], false)?></td>
-                <td><?=get_local_datetime($scheduleRow["end"], $scheduleRow["sameDay"])?></td>
-                <td><?=$scheduleRow["location"]?></td>
-                <td><?=$scheduleRow["description"]?></td>
+                <td><?=get_local_datetime($schedule_row["start"], false)?></td>
+                <td><?=get_local_datetime($schedule_row["end"], $schedule_row["sameDay"])?></td>
+                <td><?=$schedule_row["location"]?></td>
+                <td><?=$schedule_row["description"]?></td>
             </tr>
         <?php endwhile; ?>
 </table>

@@ -2,7 +2,6 @@
 require_once(__DIR__ . "/inc/header.php");
 ?>
 <div id="desc-index" class="text-center">
-    The Computer Science Club does something or another, someone please make this good
 </div>
 <div class="row">
     <div class="col-xs-4 text-center">

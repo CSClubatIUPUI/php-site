@@ -6,9 +6,9 @@
         <script src="js/global.js"></script>
         <?php
         // $pageName is defined in /inc/header.php
-        $scriptName = "js/" . strtolower($pageName) . ".js";
-        if (file_exists(__DIR__ . "/../$scriptName")): ?>
-            <script src="<?=$scriptName?>"></script>
+        $script_name = "js/" . strtolower($page_name) . ".js";
+        if (file_exists(__DIR__ . "/../$script_name")): ?>
+            <script src="<?=$script_name?>"></script>
         <?php endif; ?>
     </body>
 </html>

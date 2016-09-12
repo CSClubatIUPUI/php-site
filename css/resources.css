@@ -1,0 +1,9 @@
+.resource-container {
+    cursor: pointer;
+}
+
+.resource-name {
+    margin-left: 0.25em;
+    font-weight: 600;
+    font-size: 1.5em;
+}

@@ -2,7 +2,7 @@
 function get_local_datetime($seconds, $should_omit_date) {
     $format = "g:ia";
     if (!$should_omit_date) {
-        $format = "D, M jS Y " . $format;
+        $format = "m/d/Y " . $format . " (l)";
     }
     return date($format, $seconds);
 }

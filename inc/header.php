@@ -29,6 +29,11 @@ $original_page_name = explode(".", $script_name)[0];
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css" />
+        <?php if (isset($extra_css)): ?>
+            <?php foreach ($extra_css as $css_url): ?>
+                <link rel="stylesheet" href="<?=$css_url?>" />
+            <?php endforeach; ?>
+        <?php endif; ?>
         <link rel="stylesheet" href="css/global.css" />
         <?php
         $css_name = "css/" . strtolower($original_page_name) . ".css";

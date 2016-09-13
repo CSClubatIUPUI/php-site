@@ -23,7 +23,6 @@ $original_page_name = explode(".", $script_name)[0];
         <meta name="author" content="Alex Hicks <aldahick@iupui.edu>" />
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
-        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" /> -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -57,6 +56,11 @@ $original_page_name = explode(".", $script_name)[0];
                                 <a href="<?=$page?>"><?=$name?></a>
                             </li>
                         <?php endforeach; ?>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li <?=$script_name == "edit.php" ? 'class="active"' : "" ?>>
+                            <a href="edit.php">Cabinet Admin</a>
+                        </li>
                     </ul>
                 </div>
             </div>

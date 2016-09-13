@@ -8,19 +8,6 @@ $extra_js = [
 ];
 require_once(__DIR__ . "/inc/header.php");
 $db = get_database();
-$sql = "SELECT
-            UNIX_TIMESTAMP(`start`) AS 'start',
-            UNIX_TIMESTAMP(`end`) AS 'end',
-            `location`,
-            `description`,
-            DATE(`start`) = DATE(`end`) AS 'sameDay'
-        FROM
-            `MeetingSchedule`
-        WHERE
-            MONTH(`start`) = MONTH(CURDATE()) OR
-            MONTH(`start`) = MONTH(CURDATE() + INTERVAL 1 MONTH)
-        ORDER BY `start`";
-$schedule_result = $db->query($sql);
 ?>
 <div class="row">
     <div class="pull-right">

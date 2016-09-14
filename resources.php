@@ -12,7 +12,7 @@ $resource_result = $db->query($sql);
     <?php while ($resource_row = $resource_result->fetch_assoc()): ?>
         <div class="resource-container">
             <?php
-            $image_url = "http://assets.iu.edu/brand/2.x/trident-large.png";
+            $image_url = "https://assets.iu.edu/brand/2.x/trident-large.png";
             if (isset($resource_row["image_url"])) {
                 $image_url = $resource_row["image_url"];
             }

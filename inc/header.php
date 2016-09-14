@@ -21,6 +21,7 @@ $original_page_name = explode(".", $script_name)[0];
         <title>CS Club @ IUPUI - <?=$page_name?></title>
         <meta name="description" content="The homepage of the IUPUI Computer Science Club." />
         <meta name="author" content="Alex Hicks <aldahick@iupui.edu>" />
+        <link href="img/logo-notext.png" rel="icon" />
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

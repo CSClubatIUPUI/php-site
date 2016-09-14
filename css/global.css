@@ -1,9 +1,9 @@
-#navbar {
+#navbar-parent {
     margin-bottom: 60px;
     background-color: #499B46;
 }
 
-#navbar li {
+#navbar-parent li {
     font-size: 1.25em;
 }
 
@@ -11,7 +11,7 @@
     font-size: 1.75em;
 }
 
-#navbar li:hover {
+#navbar-parent li:hover {
     background-color: #4DB6AC;
 }
 

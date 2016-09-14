@@ -13,3 +13,9 @@
 .resource-url {
     font-size: 1.25em;
 }
+
+@media (max-width: 900px) {
+    .resource-image {
+        display: none;
+    }
+}

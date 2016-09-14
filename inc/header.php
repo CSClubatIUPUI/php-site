@@ -46,7 +46,7 @@ $original_page_name = explode(".", $script_name)[0];
         <nav id="navbar" class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="index.php">
                         <img src="img/logo-notext.png" width="32" />
                     </a>
                 </div>

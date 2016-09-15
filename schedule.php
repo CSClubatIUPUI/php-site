@@ -1,10 +1,13 @@
 <?php
 $extra_css = [
-    "https://cdn.jsdelivr.net/bootstrap.calendar/0.2.4/css/calendar.min.css"
+    "https://cdn.jsdelivr.net/bootstrap.calendar/0.2.4/css/calendar.min.css",
+    "https://addtocalendar.com/atc/1.5/atc-style-blue.css"
 ];
 $extra_js = [
     "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js",
-    "https://cdn.jsdelivr.net/bootstrap.calendar/0.2.4/js/calendar.min.js"
+    "https://cdn.jsdelivr.net/bootstrap.calendar/0.2.4/js/calendar.min.js",
+    "http://addtocalendar.com/atc/1.5/atc.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"
 ];
 require_once(__DIR__ . "/inc/header.php");
 $db = get_database();
@@ -39,6 +42,19 @@ $db = get_database();
                 End: <span id="modal-event-end"></span>
                 <h4>Description</h4>
                 <span id="modal-event-description"></span>
+                <h4>Add to Calendar</h4>
+                <span id="modal-event-calendar" class="addtocalendar atc-style-blue">
+                    <var class="atc_event">
+                        <var class="atc_date_start"></var>
+                        <var class="atc_date_end"></var>
+                        <var class="atc_timezone">America/Indiana/Indianapolis</var>
+                        <var class="atc_title"></var>
+                        <var class="atc_description"></var>
+                        <var class="atc_location"></var>
+                        <var class="atc_organizer">CS Club @ IUPUI</var>
+                        <var class="atc_organizer_email">csclub@iupui.edu</var>
+                    </var>
+                </span>
             </div>
         </div>
     </div>

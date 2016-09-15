@@ -13,11 +13,22 @@ function onEventOpen(id) {
         console.log(id);
         return;
     }
+    var startDate = new Date(Number(events[id].start));
+    var endDate = new Date(Number(events[id].end));
+    var datetimeFormat = "YYYY-MM-DD HH:mm:ss";
     $(".modal").modal("hide");
     $("#modal-event-location").html(events[id].location.replace(/\n/g, "<br />"));
     $("#modal-event-description").html(events[id].description.replace(/\n/g, "<br />"));
-    $("#modal-event-start").text(getDateString(Number(events[id].start)));
-    $("#modal-event-end").text(getDateString(Number(events[id].end)));
+    $("#modal-event-start").text(startDate.toLocaleString());
+    $("#modal-event-end").text(endDate.toLocaleString());
+
+    var $calendar = $("#modal-event-calendar").find(".atc_event");
+    $calendar.find(".atc_date_start").html(moment(startDate).format(datetimeFormat));
+    $calendar.find(".atc_date_end").html(moment(endDate).format(datetimeFormat));
+    $calendar.find(".atc_title").html(events[id].title);
+    $calendar.find(".atc_description").html(events[id].description);
+    $calendar.find(".atc_location").html(events[id].location);
+    addtocalendar.load();
     $("#modal-event-info").modal("show");
 }
 

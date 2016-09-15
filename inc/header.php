@@ -44,7 +44,7 @@ $original_page_name = explode(".", $script_name)[0];
     </head>
     <body>
         <nav id="navbar-parent" class="navbar navbar-default">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="icon-bar"></span>

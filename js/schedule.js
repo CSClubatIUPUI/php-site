@@ -8,7 +8,8 @@ function onCalendarViewLoad(view) {
     $("#label-month").text(this.getTitle());
 }
 
-function onEventOpen(id) {
+function onEventOpen(rawID) {
+    var id = rawID - 1;
     if (!events[id]) {
         console.log(id);
         return;

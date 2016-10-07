@@ -4,6 +4,7 @@ $db = get_database();
 $start_time = $db->real_escape_string($_GET["from"]);
 $end_time = $db->real_escape_string($_GET["to"]);
 $sql = "SELECT
+            `id`,
             UNIX_TIMESTAMP(`start`) * 1000 AS 'start',
             UNIX_TIMESTAMP(`end`) * 1000 AS 'end',
             SUBSTRING_INDEX(`description`, '\n', 1) AS 'title',
@@ -17,13 +18,10 @@ $sql = "SELECT
         ORDER BY `start`, `end`";
 $schedule_result = $db->query($sql);
 $output = [];
-$id = 0;
 while ($schedule_row = $schedule_result->fetch_assoc()) {
-    $schedule_row["id"] = $id;
-    $schedule_row["url"] = "javascript:onEventOpen($id)";
+    $schedule_row["url"] = "javascript:onEventOpen({$schedule_row["id"]})";
     $schedule_row["class"] = "event-info";
     $output[] = $schedule_row;
-    $id++;
 }
 header("Content-Type: application/json");
 echo(json_encode([

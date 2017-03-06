@@ -2,14 +2,16 @@
 require_once(__DIR__ . "/inc/header.php");
 
 $db = get_database();
-$sql = "SELECT
-            `name`, `url`, `image_url`
+$sql = 'SELECT
+            "name",
+            "url",
+            "image_url"
         FROM
-            `Resource`";
-$resource_result = $db->query($sql);
+            "resource"';
+$resource_rows = $db->query($sql);
 ?>
 <div class="col-xs-12 col-md-offset-2 col-md-10">
-    <?php while ($resource_row = $resource_result->fetch_assoc()): ?>
+    <?php foreach ($resource_rows as $resource_row): ?>
         <div class="resource-container">
             <?php
             $image_url = "https://assets.iu.edu/brand/2.x/trident-large.png";
@@ -23,7 +25,7 @@ $resource_result = $db->query($sql);
                 <span class="resource-url"><?=$resource_row["url"]?></span>
             </a>
         </div>
-    <?php endwhile; ?>
+    <?php endforeach; ?>
 </div>
 <?php
 require_once(__DIR__ . "/inc/footer.php");

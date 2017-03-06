@@ -8,18 +8,15 @@ require_once(__DIR__ . "/../../inc/utils.php");
 require_once(__DIR__ . "/../../inc/db.php");
 $db = get_database();
 
-$is_cabinet_member = is_cabinet_member($db, $_SESSION["username"]);
+$is_cabinet_member = is_cabinet_member($db, $_SESSION["user_id"]);
 if (!$is_cabinet_member) {
     echo("<h1>Access denied.</h1><h4>You are not a cabinet member.</h4>");
     exit;
 }
 
-$content_page = $db->real_escape_string($_POST["page"]);
-$content_name = $db->real_escape_string($_POST["name"]);
-$content_value = $db->real_escape_string($_POST["value"]);
-$sql = "INSERT INTO `PageContent` (`page`, `name`, `value`)
-        VALUES('$content_page', '$content_name', '$content_value')
-        ON DUPLICATE KEY UPDATE `value` = '$content_value'";
-$db->query($sql);
+$sql = 'INSERT INTO "page_content" ("page", "name", "value")
+        VALUES($1, $2, $3)
+        ON CONFLICT("page", "name") DO UPDATE SET "value" = "excluded"."value"';
+$db->query($sql, [$_POST["page"], $_POST["name"], $_POST["value"]]);
 header("Location: ../../edit.php");
 ?>

@@ -1,24 +1,24 @@
 <?php
 require_once(__DIR__ . "/../../inc/db.php");
 $db = get_database();
-$start_time = $db->real_escape_string($_GET["from"]);
-$end_time = $db->real_escape_string($_GET["to"]);
-$sql = "SELECT
-            `id`,
-            UNIX_TIMESTAMP(`start`) * 1000 AS 'start',
-            UNIX_TIMESTAMP(`end`) * 1000 AS 'end',
-            SUBSTRING_INDEX(`description`, '\n', 1) AS 'title',
-            `description`,
-            `location`
+$sql = 'SELECT
+            "id",
+            extract(epoch from "start") * 1000 AS "start",
+            extract(epoch from "end") * 1000 AS "end",
+            (regexp_split_to_array("description", \'\n\'))[1] AS "title",
+            "description",
+            "location"
         FROM
-            `MeetingSchedule`
+            "schedule"
         WHERE
-            UNIX_TIMESTAMP(`start`) >= $start_time / 1000 AND
-            UNIX_TIMESTAMP(`end`) < $end_time / 1000
-        ORDER BY `start`, `end`";
-$schedule_result = $db->query($sql);
+            extract(epoch from "start") >= $1 AND
+            extract(epoch from "end") < $2
+        ORDER BY
+            "start",
+            "end"';
+$schedule_rows = $db->query($sql, [floatval($_GET["from"]) / 1000, floatval($_GET["to"]) / 1000]);
 $output = [];
-while ($schedule_row = $schedule_result->fetch_assoc()) {
+foreach ($schedule_rows as $schedule_row) {
     $schedule_row["url"] = "javascript:onEventOpen({$schedule_row["id"]})";
     $schedule_row["class"] = "event-info";
     $output[] = $schedule_row;

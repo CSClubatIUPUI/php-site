@@ -3,18 +3,22 @@ require_once(__DIR__ . "/inc/cas.php");
 require_once(__DIR__ . "/inc/header.php");
 
 $db = get_database();
-$is_cabinet_member = is_cabinet_member($db, $_SESSION["username"]);
+$is_cabinet_member = is_cabinet_member($db, $_SESSION["user_id"]);
 if (!$is_cabinet_member) {
     echo("<h1>Access denied.</h1><h4>You are not a cabinet member.</h4>");
     exit;
 }
 
-$sql = "SELECT
-            `page`, `name`, `value`
+$sql = 'SELECT
+            "page",
+            "name",
+            "value"
         FROM
-            `PageContent`
-        ORDER BY `page`, `name`";
-$content_result = $db->query($sql);
+            "page_content"
+        ORDER BY
+            "page",
+            "name"';
+$content_rows = $db->query($sql);
 $last_page = "";
 ?>
 <div class="row">
@@ -28,7 +32,7 @@ $last_page = "";
                 </tr>
             </thead>
             <tbody>
-                <?php while ($content_row = $content_result->fetch_assoc()): ?>
+                <?php foreach ($content_rows as $content_row): ?>
                     <tr>
                         <td><?=$content_row["page"]?></td>
                         <td><?=$content_row["name"]?></td>
@@ -43,7 +47,7 @@ $last_page = "";
                             </td>
                         </form>
                     </tr>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

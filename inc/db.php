@@ -1,14 +1,10 @@
 <?php
-$config = json_decode(file_get_contents(__DIR__ . "/../config.json"));
-
+require_once(__DIR__ . "/config.php");
+require_once(__DIR__ . "/Database.php");
 function get_database() {
     global $config;
-    return new mysqli(
-        $config->db->host,
-        $config->db->user,
-        $config->db->password,
-        $config->db->database,
-        $config->db->port
-    );
+    $db = new Database($config["db"]);
+    $db->connect();
+    return $db;
 }
 ?>

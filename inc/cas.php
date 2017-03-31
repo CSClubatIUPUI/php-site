@@ -18,8 +18,4 @@ if (str_startswith($cas_response, "no")) {
 }
 $username = explode("\r\n", $cas_response)[1];
 $_SESSION["username"] = $username;
-
-require_once(__DIR__ . "/db.php");
-$db = get_database();
-$_SESSION["user_id"] = get_user_id($db, $username);
 ?>

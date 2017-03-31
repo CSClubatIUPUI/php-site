@@ -1,22 +1,20 @@
 <?php
 require_once(__DIR__ . "/inc/header.php");
 $db = get_database();
-$sql = 'SELECT
-            "user"."first_name",
-            "user"."last_name",
-            "user"."email",
-            "position"."name" AS "position_name"
+$sql = "SELECT
+            `Person`.`first_name`,
+            `Person`.`last_name`,
+            `Person`.`email`,
+            `CabinetMember`.`position`
         FROM
-            "user_position"
-                left join "user" on
-                    "user_position"."user_id" = "user"."id"
-                left join "position" on
-                    "user_position"."position_id" = "position"."id"
+            `CabinetMember`
+                LEFT JOIN `Person` ON
+                    `CabinetMember`.`username` = `Person`.`username`
         ORDER BY
-            "position"."rank" ASC,
-            "user"."last_name" ASC,
-            "user"."first_name" ASC';
-$cabinet_rows = $db->query($sql);
+            `CabinetMember`.`rank` ASC,
+            `Person`.`last_name` ASC,
+            `Person`.`first_name` ASC";
+$cabinet_result = $db->query($sql);
 ?>
 <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -29,9 +27,9 @@ $cabinet_rows = $db->query($sql);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($cabinet_rows as $cabinet_row): ?>
+                <?php while ($cabinet_row = $cabinet_result->fetch_assoc()): ?>
                     <tr>
-                        <td><?=$cabinet_row["position_name"]?></td>
+                        <td><?=$cabinet_row["position"]?></td>
                         <td><?=$cabinet_row["first_name"]?> <?=$cabinet_row["last_name"]?></td>
                         <td>
                             <a href="mailto:<?=$cabinet_row["email"]?>">
@@ -39,7 +37,7 @@ $cabinet_rows = $db->query($sql);
                             </a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endwhile; ?>
             </tbody>
         </table>
     </div>

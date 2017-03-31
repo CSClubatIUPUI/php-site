@@ -20,36 +20,38 @@ function get_local_datetime($seconds, $should_omit_date) {
     return date($format, $seconds);
 }
 
+function get_current_commit_hash() {
+    exec('git log --pretty="%h" -n1 HEAD', $hash);
+    return $hash[0];
+}
+
 function get_page_content($db, $page_name) {
-    $sql = 'SELECT
-                "name",
-                "value"
+    $sql = "SELECT
+                name, value
             FROM
-                "page_content"
+                PageContent
             WHERE
-                "page" = $1';
-    $content_rows = $db->query($sql, [$page_name]);
+                page = ?";
+    $content_stmt = $db->prepare($sql);
+    $content_stmt->bind_param("s", $page_name);
+    $content_stmt->execute();
+    $content_stmt->bind_result($content_name, $content_value);
     $content = [];
-    foreach ($content_rows as $content_row) {
-        $content[$content_row["name"]] = $content_row["value"];
+    while ($content_stmt->fetch()) {
+        $content[$content_name] = $content_value;
     }
     return $content;
 }
 
-function is_cabinet_member($db, $user_id) {
-    $sql = 'SELECT
-                COUNT(*) as "count"
+function is_cabinet_member($db, $username) {
+    $escaped_username = $db->real_escape_string($username);
+    $sql = "SELECT
+                COUNT(*) AS 'count'
             FROM
-                "user_position"
+                `CabinetMember`
             WHERE
-                "user_id" = $1';
-    $rows = $db->query($sql, [$user_id]);
-    return $rows[0]["count"] > 0;
-}
-
-function get_user_id($db, $username) {
-    $sql = 'select "id" from "user" where "username" = $1';
-    $user_rows = $db->query($sql, [$username]);
-    return count($user_rows) > 0 ? $user_rows[0]["id"] : null;
+                `username` = '$escaped_username'";
+    $row = $db->query($sql)->fetch_assoc();
+    return $row["count"] == 1;
 }
 ?>

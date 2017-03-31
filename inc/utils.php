@@ -20,6 +20,11 @@ function get_local_datetime($seconds, $should_omit_date) {
     return date($format, $seconds);
 }
 
+function get_current_commit_hash() {
+    exec('git log --pretty="%h" -n1 HEAD', $hash);
+    return $hash[0];
+}
+
 function get_page_content($db, $page_name) {
     $sql = "SELECT
                 name, value

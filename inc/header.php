@@ -11,6 +11,8 @@ $page_names = [
 ];
 $page_name = isset($page_names[$script_name]) ? $page_names[$script_name] : $script_name;
 $original_page_name = explode(".", $script_name)[0];
+$version = get_current_commit_hash();
+$cache = "?cacheVersion=$version";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,14 +33,14 @@ $original_page_name = explode(".", $script_name)[0];
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css" />
         <?php if (isset($extra_css)): ?>
             <?php foreach ($extra_css as $css_url): ?>
-                <link rel="stylesheet" href="<?=$css_url?>" />
+                <link rel="stylesheet" href="<?=$css_url . $cache?>" />
             <?php endforeach; ?>
         <?php endif; ?>
-        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="css/global.css<?=$cache?>" />
         <?php
         $css_name = "css/" . strtolower($original_page_name) . ".css";
         if (file_exists(__DIR__ . "/../$css_name")): ?>
-            <link rel="stylesheet" href="<?=$css_name?>" />
+            <link rel="stylesheet" href="<?=$css_name . $cache?>" />
         <?php endif; ?>
         <link href="favicon.ico" rel="icon" />
     </head>

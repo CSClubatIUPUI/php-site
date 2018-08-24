@@ -19,5 +19,12 @@
         if (file_exists(__DIR__ . "/../$script_name")): ?>
             <script src="<?=$script_name . $cache?>"></script>
         <?php endif; ?>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124577380-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-124577380-1');
+        </script>
     </body>
 </html>

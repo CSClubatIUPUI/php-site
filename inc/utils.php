@@ -12,6 +12,7 @@ function str_endswith($haystack, $needle) {
     return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
 }
 
+// returns pretty-format date or time
 function get_local_datetime($seconds, $should_omit_date) {
     $format = "g:ia";
     if (!$should_omit_date) {
@@ -21,6 +22,7 @@ function get_local_datetime($seconds, $should_omit_date) {
 }
 
 function get_current_commit_hash() {
+    // magical git command
     exec('git log --pretty="%h" -n1 HEAD', $hash);
     return $hash[0];
 }

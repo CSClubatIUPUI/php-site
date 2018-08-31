@@ -22,7 +22,7 @@ $cache = "?cacheVersion=$version";
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>CS Club @ IUPUI - <?=$page_name?></title>
         <meta name="description" content="The homepage of the IUPUI Computer Science Club." />
-        <meta name="author" content="Alex Hicks <aldahick@iupui.edu>" />
+        <meta name="author" content="CS Club @ IUPUI <csclubin@iupui.edu>" />
         <link href="img/logo-notext.png" rel="icon" />
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" />
@@ -38,6 +38,7 @@ $cache = "?cacheVersion=$version";
         <?php endif; ?>
         <link rel="stylesheet" href="css/global.css<?=$cache?>" />
         <?php
+        // include "css/PAGE_NAME.css", e.g. "css/cabinet.css"
         $css_name = "css/" . strtolower($original_page_name) . ".css";
         if (file_exists(__DIR__ . "/../$css_name")): ?>
             <link rel="stylesheet" href="<?=$css_name . $cache?>" />
@@ -59,15 +60,14 @@ $cache = "?cacheVersion=$version";
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <?php
-                        foreach ($page_names as $page => $name):
-                        ?>
+                        <?php foreach ($page_names as $page => $name): ?>
                             <li <?=$page == $script_name ? 'class="active"' : "" ?>>
                                 <a href="<?=$page?>"><?=$name?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <?php // TODO clean this up - this is a bad check ?> 
                         <li <?=$script_name == "edit.php" ? 'class="active"' : "" ?>>
                             <a href="edit.php">Cabinet Admin</a>
                         </li>

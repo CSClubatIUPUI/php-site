@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:5-node-browsers
+      # - image: circleci/mysql:5.5
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: bash ./scripts/lint.sh

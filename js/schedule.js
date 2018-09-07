@@ -34,7 +34,7 @@ function onEventOpen(rawID) {
 }
 
 $(document).ready(function() {
-    $.get("post/get/schedule.php", {
+    $.get("post/get_schedule.php", {
         "from": 0,
         "to": Number.MAX_SAFE_INTEGER
     }, function(data) {
@@ -44,7 +44,7 @@ $(document).ready(function() {
         "show": false
     });
     calendar = $("#calendar").calendar({
-        "events_source": "post/get/schedule.php",
+        "events_source": "post/get_schedule.php",
         "tmpl_path": "templates/calendar/",
         "tmpl_cache": false,
         "view": "month",

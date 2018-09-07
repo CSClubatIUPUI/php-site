@@ -6,7 +6,6 @@ if (isset($_SESSION["username"])) { // already logged in
 require_once(__DIR__ . "/utils.php");
 // construct the URL for CAS to redirect back to
 $this_url = "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
-// gross CAS logic follows
 /*
 flow of CAS:
     - user tries to access http://csclub.cs.iupui.edu/edit

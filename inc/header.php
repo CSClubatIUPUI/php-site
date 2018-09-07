@@ -1,15 +1,9 @@
 <?php
 date_default_timezone_set("America/Indianapolis");
-require_once(__DIR__ . "/utils.php");
 require_once(__DIR__ . "/db.php");
+require_once(__DIR__ . "/utils.php");
 $script_name = basename($_SERVER["SCRIPT_NAME"]);
-$page_names = [
-    "index.php" => "Home",
-    "resources.php" => "Resources",
-    "schedule.php" => "Meeting Schedule",
-    "cabinet.php" => "Cabinet"
-];
-$page_name = isset($page_names[$script_name]) ? $page_names[$script_name] : $script_name;
+$page_title = isset($CONFIG->page_titles->{$script_name}) ? $CONFIG->page_titles->{$script_name} : $script_name;
 $original_page_name = explode(".", $script_name)[0];
 $version = get_current_commit_hash();
 $cache = "?cacheVersion=$version";
@@ -20,7 +14,7 @@ $cache = "?cacheVersion=$version";
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>CS Club @ IUPUI - <?=$page_name?></title>
+        <title>CS Club @ IUPUI - <?=$page_title?></title>
         <meta name="description" content="The homepage of the IUPUI Computer Science Club." />
         <meta name="author" content="CS Club @ IUPUI <csclubin@iupui.edu>" />
         <link href="img/logo-notext.png" rel="icon" />
@@ -60,14 +54,14 @@ $cache = "?cacheVersion=$version";
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <?php foreach ($page_names as $page => $name): ?>
+                        <?php foreach ($CONFIG->page_titles as $page => $title): ?>
                             <li <?=$page == $script_name ? 'class="active"' : "" ?>>
-                                <a href="<?=$page?>"><?=$name?></a>
+                                <a href="<?=$page?>"><?=$title?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <?php // TODO clean this up - this is a bad check ?> 
+                        <?php // TODO clean this up - this is a bad check ?>
                         <li <?=$script_name == "edit.php" ? 'class="active"' : "" ?>>
                             <a href="edit.php">Cabinet Admin</a>
                         </li>

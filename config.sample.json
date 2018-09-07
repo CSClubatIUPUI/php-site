@@ -5,5 +5,11 @@
     "user": "csclub_site",
     "password": "password here",
     "database": "csclub_site"
+  },
+  "page_titles": {
+    "index.php": "Home",
+    "resources.php": "Resources",
+    "schedule.php": "Event Schedule",
+    "cabinet.php": "Cabinet"
   }
 }

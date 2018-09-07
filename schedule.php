@@ -10,7 +10,6 @@ $extra_js = [
     "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"
 ];
 require_once(__DIR__ . "/inc/header.php");
-$db = get_database();
 ?>
 <div class="row">
     <div class="pull-right">

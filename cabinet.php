@@ -1,20 +1,20 @@
 <?php
 require_once(__DIR__ . "/inc/header.php");
-$db = get_database();
-$sql = "SELECT
-            `Person`.`first_name`,
-            `Person`.`last_name`,
-            `Person`.`email`,
-            `CabinetMember`.`position`
-        FROM
-            `CabinetMember`
-                LEFT JOIN `Person` ON
-                    `CabinetMember`.`username` = `Person`.`username`
-        ORDER BY
-            `CabinetMember`.`rank` ASC,
-            `Person`.`last_name` ASC,
-            `Person`.`first_name` ASC";
-$cabinet_result = $db->query($sql);
+$cabinet_members = $db->query(<<<SQL
+    SELECT
+        "users"."first_name",
+        "users"."last_name",
+        "users"."email",
+        "cabinet_roles"."title"
+    FROM "cabinet_roles"
+        INNER JOIN "users" ON
+            "cabinet_roles"."user_id" = "users"."id"
+    ORDER BY
+        "cabinet_roles"."rank" ASC,
+        "users"."last_name" ASC,
+        "users"."first_name" ASC
+SQL
+);
 ?>
 <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -27,17 +27,17 @@ $cabinet_result = $db->query($sql);
                 </tr>
             </thead>
             <tbody>
-                <?php while ($cabinet_row = $cabinet_result->fetch_assoc()): ?>
+                <?php foreach ($cabinet_members as $cabinet_member): ?>
                     <tr>
-                        <td><?=$cabinet_row["position"]?></td>
-                        <td><?=$cabinet_row["first_name"]?> <?=$cabinet_row["last_name"]?></td>
+                        <td><?=$cabinet_member["title"]?></td>
+                        <td><?=$cabinet_member["first_name"]?> <?=$cabinet_member["last_name"]?></td>
                         <td>
-                            <a href="mailto:<?=$cabinet_row["email"]?>">
-                                <?=$cabinet_row["email"]?>
+                            <a href="mailto:<?=$cabinet_member["email"]?>">
+                                <?=$cabinet_member["email"]?>
                             </a>
                         </td>
                     </tr>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

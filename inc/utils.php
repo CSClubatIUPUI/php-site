@@ -27,33 +27,13 @@ function get_current_commit_hash() {
     return $hash[0];
 }
 
-function get_page_content($db, $page_name) {
-    $sql = "SELECT
-                name, value
-            FROM
-                PageContent
-            WHERE
-                page = ?";
-    $content_stmt = $db->prepare($sql);
-    $content_stmt->bind_param("s", $page_name);
-    $content_stmt->execute();
-    $content_stmt->bind_result($content_name, $content_value);
-    $content = [];
-    while ($content_stmt->fetch()) {
-        $content[$content_name] = $content_value;
-    }
-    return $content;
-}
-
-function is_cabinet_member($db, $username) {
-    $escaped_username = $db->real_escape_string($username);
-    $sql = "SELECT
-                COUNT(*) AS 'count'
-            FROM
-                `CabinetMember`
-            WHERE
-                `username` = '$escaped_username'";
-    $row = $db->query($sql)->fetch_assoc();
-    return $row["count"] == 1;
+function is_cabinet_member(PDO $db, $user_id) {
+    $is_cabinet_member_stmt = $db->prepare(
+        'SELECT COUNT(*) as "count" FROM "cabinet_roles" WHERE "user_id" = :user_id'
+    );
+    $stmt->execute([
+        "user_id" => $user_id
+    ]);
+    return $stmt->fetchColumn() > 0;
 }
 ?>

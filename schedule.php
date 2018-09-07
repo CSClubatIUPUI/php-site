@@ -6,7 +6,7 @@ $extra_css = [
 $extra_js = [
     "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js",
     "https://cdn.jsdelivr.net/bootstrap.calendar/0.2.4/js/calendar.min.js",
-    "http://addtocalendar.com/atc/1.5/atc.min.js",
+    "https://addtocalendar.com/atc/1.5/atc.min.js",
     "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"
 ];
 require_once(__DIR__ . "/inc/header.php");

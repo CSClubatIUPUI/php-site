@@ -3,8 +3,7 @@
 $php_dirs = [
     ".",
     "./inc",
-    "./post/get",
-    "./post/update"
+    "./post"
 ];
 $php_files = [];
 foreach ($php_dirs as $php_dir) {

@@ -60,12 +60,6 @@ $cache = "?cacheVersion=$version";
                             </li>
                         <?php endforeach; ?>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <?php // TODO clean this up - this is a bad check ?>
-                        <li <?=$script_name == "edit.php" ? 'class="active"' : "" ?>>
-                            <a href="edit.php">Cabinet Admin</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </nav>

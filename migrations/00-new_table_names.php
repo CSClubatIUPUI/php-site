@@ -1,4 +1,8 @@
 <?php
+if (php_sapi_name() !== "cli") {
+    echo("You have to run this script from the command line.");
+    exit;
+}
 require_once(__DIR__ . "/../inc/db.php");
 
 $resources = $db->query('SELECT * FROM "Resource"', PDO::FETCH_ASSOC);

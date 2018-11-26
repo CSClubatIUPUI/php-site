@@ -1,4 +1,8 @@
 <?php
+if (php_sapi_name() !== "cli") {
+    echo("You have to run this script from the command line.");
+    exit;
+}
 // outputs a newline-separated list of PHP files
 $php_dirs = [
     ".",

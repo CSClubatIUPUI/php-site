@@ -1,7 +1,14 @@
 <?php
 date_default_timezone_set("America/Indianapolis");
+
+$headers = getallheaders();
+if (in_array("x-csclub-debug", array_map("strtolower", array_keys($headers)))) {
+  ini_set("display_errors", true);
+}
+
 require_once(__DIR__ . "/db.php");
 require_once(__DIR__ . "/utils.php");
+
 $script_name = basename($_SERVER["SCRIPT_NAME"]);
 $page_title = isset($CONFIG->page_titles->{$script_name}) ? $CONFIG->page_titles->{$script_name} : $script_name;
 $original_page_name = explode(".", $script_name)[0];

@@ -7,4 +7,4 @@ cabinet members to edit content.
 You can run migrations using `php -f ./migrations/MIGRATION_FILENAME.php`.
 
 ## Contributors
-- Alex Hicks <aldahick@iupui.edu>
+- Alex Hicks <aldahick@iupui.edu> <alex@alexhicks.net>

@@ -1,6 +1,9 @@
 <Files config.json>
-    Deny from all
+  Deny from all
 </Files>
 <FilesMatch "\.db$">
-    Deny from all
+  Deny from all
+</FilesMatch>
+<FilesMatch "\.log$">
+  Deny from all
 </FilesMatch>

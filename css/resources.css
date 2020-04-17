@@ -1,21 +1,21 @@
 .resource-container {
-    cursor: pointer;
-    margin-bottom: 2em;
+  cursor: pointer;
+  margin-bottom: 2em;
 }
 
 .resource-name {
-    margin-left: 0.25em;
-    margin-right: 0.5em;
-    font-weight: 600;
-    font-size: 2.25em;
+  margin-left: 0.25em;
+  margin-right: 0.5em;
+  font-weight: 600;
+  font-size: 2.25em;
 }
 
 .resource-url {
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
 
 @media (max-width: 900px) {
-    .resource-image {
-        display: none;
-    }
+  .resource-image {
+    display: none;
+  }
 }

@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . "/../inc/db.php");
-$stmt = $db->prepare(<<<SQL
+$stmt = $db->prepare(
+  <<<SQL
     SELECT
         "id",
         UNIX_TIMESTAMP("start") * 1000 AS "start",
@@ -15,19 +16,18 @@ $stmt = $db->prepare(<<<SQL
 SQL
 );
 $stmt->execute([
-    "start_time" => $_GET["from"],
-    "end_time" => $_GET["to"]
+  "start_time" => $_GET["from"],
+  "end_time" => $_GET["to"]
 ]);
 $events = $stmt->fetchAll();
 foreach ($events as $event) {
-    $event["url"] = "javascript:onEventOpen({$event["id"]})";
-    $event["class"] = "event-info";
-    $event["title"] = explode("\n", $event["description"])[0];
-    $output[] = $event;
+  $event["url"] = "javascript:onEventOpen({$event["id"]})";
+  $event["class"] = "event-info";
+  $event["title"] = explode("\n", $event["description"])[0];
+  $output[] = $event;
 }
 header("Content-Type: application/json");
-echo(json_encode([
-    "success" => 1,
-    "result" => $output
+echo (json_encode([
+  "success" => 1,
+  "result" => $output
 ]));
-?>
